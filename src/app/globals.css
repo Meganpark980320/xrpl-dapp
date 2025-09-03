@@ -1,26 +1,35 @@
+/* Tailwind v4 */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Theme tokens (optional) */
+@theme {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+
+  --shadow-soft: 0 4px 16px rgba(0,0,0,0.06);
+  --radius-xl2: 1rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+:root { color-scheme: light dark; }
+html, body { height: 100%; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Cards / inputs */
+.card { @apply bg-white rounded-2xl shadow-[var(--shadow-soft)] border border-gray-100; }
+.input { @apply w-full rounded-xl border border-gray-200 px-3 py-2 outline-none focus:ring-2 focus:ring-[--color-brand-500] bg-white; }
+.label { @apply text-sm text-gray-600; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Buttons: v4에서는 @apply로 커스텀 클래스 결합 불가 → 직접 풀어쓰기 */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-2xl font-medium transition;
+}
+.btn-primary {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-2xl font-medium transition;
+  @apply text-white bg-[--color-brand-600] hover:bg-[--color-brand-700];
+}
+.btn-outline {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-2xl font-medium transition;
+  @apply border border-gray-200 bg-white hover:bg-gray-50;
 }
